@@ -33,7 +33,7 @@
     </plugin>
 
      <light type="directional" name="sun">
-      <cast_shadows>true</cast_shadows>
+      <cast_shadows>false</cast_shadows>
       <pose>0 0 10 0 0 0</pose>
       <diffuse>1 1 1 1</diffuse>
       <specular>0.5 0.5 0.5 1</specular>
@@ -59,8 +59,8 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.0</mu>
-                <mu2>0.0</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
@@ -80,47 +80,1100 @@
         </visual>
       </link>
     </model>
+<model name="house_walls">
+  <static>true</static>
+  <pose>-7.9575 -6.8025 0 0 0 0</pose>
 
-    <include>
-      <uri>model://cafe</uri>
-    </include>
+  <link name="walls">
 
-    <include>
-      <name>table1</name>
-      <pose>0.5 -1.6 0.2 0 0 0</pose>
-      <uri>model://cafe_table</uri>
-    </include>
+    <!-- ================================================= -->
+    <!-- EXTERIOR WALLS                                    -->
+    <!-- ================================================= -->
 
-    <include>
-      <name>table2</name>
-      <pose>2.4 -5.5 0.2 0 0 0</pose>
-      <uri>model://cafe_table</uri>
-    </include>
+    <!-- Left exterior -->
+    <collision name="left_ext_collision">
+      <pose>0.06 6.8025 1.25 0 0 0</pose>
+      <geometry>
+        <box><size>0.12 13.605 2.5</size></box>
+      </geometry>
+    </collision>
 
-    <include>
-      <name>table3</name>
-      <pose>-1.5 -5.5 0.2 0 0 0</pose>
-      <uri>model://cafe_table</uri>
-    </include>
+    <visual name="left_ext_visual">
+      <pose>0.06 6.8025 1.25 0 0 0</pose>
+      <geometry>
+        <box><size>0.12 13.605 2.5</size></box>
+      </geometry>
+      <material>
+        <ambient>0.8 0.8 0.8 1</ambient>
+        <diffuse>0.8 0.8 0.8 1</diffuse>
+        <specular>0.4 0.4 0.4 1</specular>
+      </material>
+    </visual>
 
-    <include>
-      <name>table4</name>
-      <pose>2.4 -9 0.2 0 0 0</pose>
-      <uri>model://cafe_table</uri>
-    </include>
 
-    <include>
-      <name>table5</name>
-      <pose>-1.5 -9 0.2 0 0 0</pose>
-      <uri>model://cafe_table</uri>
-    </include>
+    <!-- Right exterior -->
+    <collision name="right_ext_collision">
+      <pose>15.825 6.8025 1.25 0 0 0</pose>
+      <geometry>
+        <box><size>0.12 13.605 2.5</size></box>
+      </geometry>
+    </collision>
 
-    <include>
-      <name>Apriltag36_11_00000</name>
-      <pose>-4.96 1.5 0.46 1.5708 0 1.5708</pose>
-      <static>true</static>
-      <uri>model://Apriltag36_11_00000</uri>
-    </include>
+    <visual name="right_ext_visual">
+      <pose>15.825 6.8025 1.25 0 0 0</pose>
+      <geometry>
+        <box><size>0.12 13.605 2.5</size></box>
+      </geometry>
+      <material>
+        <ambient>0.8 0.8 0.8 1</ambient>
+        <diffuse>0.8 0.8 0.8 1</diffuse>
+        <specular>0.4 0.4 0.4 1</specular>
+      </material>
+    </visual>
 
-  </world>
+
+    <!-- Back wall -->
+    <collision name="back_collision">
+      <pose>7.9575 13.515 1.25 0 0 0</pose>
+      <geometry>
+        <box><size>15.915 0.12 2.5</size></box>
+      </geometry>
+    </collision>
+
+    <visual name="back_visual">
+      <pose>7.9575 13.515 1.25 0 0 0</pose>
+      <geometry>
+        <box><size>15.915 0.12 2.5</size></box>
+      </geometry>
+      <material>
+        <ambient>0.8 0.8 0.8 1</ambient>
+        <diffuse>0.8 0.8 0.8 1</diffuse>
+        <specular>0.4 0.4 0.4 1</specular>
+      </material>
+    </visual>
+
+
+    <!-- Front wall LEFT of front door -->
+    <collision name="front_left_collision">
+      <pose>2.85 0.06 1.25 0 0 0</pose>
+      <geometry>
+        <box><size>5.70 0.12 2.5</size></box>
+      </geometry>
+    </collision>
+
+    <visual name="front_left_visual">
+      <pose>2.85 0.06 1.25 0 0 0</pose>
+      <geometry>
+        <box><size>5.70 0.12 2.5</size></box>
+      </geometry>
+      <material>
+        <ambient>0.8 0.8 0.8 1</ambient>
+        <diffuse>0.8 0.8 0.8 1</diffuse>
+        <specular>0.4 0.4 0.4 1</specular>
+      </material>
+    </visual>
+
+
+    <!-- Front wall RIGHT of front door -->
+    <!-- Front door opening is about 1.43 m wide -->
+
+    <collision name="front_right_collision">
+      <pose>11.52 0.06 1.25 0 0 0</pose>
+      <geometry>
+        <box><size>8.79 0.12 2.5</size></box>
+      </geometry>
+    </collision>
+
+    <visual name="front_right_visual">
+      <pose>11.52 0.06 1.25 0 0 0</pose>
+      <geometry>
+        <box><size>8.79 0.12 2.5</size></box>
+      </geometry>
+      <material>
+        <ambient>0.8 0.8 0.8 1</ambient>
+        <diffuse>0.8 0.8 0.8 1</diffuse>
+        <specular>0.4 0.4 0.4 1</specular>
+      </material>
+    </visual>
+
+
+    <!-- ================================================= -->
+    <!-- BATHROOM                                          -->
+    <!-- ================================================= -->
+
+    <collision name="bath_left_collision">
+      <pose>6.525 11.325 1.25 0 0 0</pose>
+      <geometry>
+        <box><size>0.12 4.38 2.5</size></box>
+      </geometry>
+    </collision>
+
+    <visual name="bath_left_visual">
+      <pose>6.525 11.325 1.25 0 0 0</pose>
+      <geometry>
+        <box><size>0.12 4.38 2.5</size></box>
+      </geometry>
+      <material>
+        <ambient>0.8 0.8 0.8 1</ambient>
+        <diffuse>0.8 0.8 0.8 1</diffuse>
+        <specular>0.4 0.4 0.4 1</specular>
+      </material>
+    </visual>
+
+
+    <collision name="bath_right_collision">
+      <pose>9.975 10.095 1.25 0 0 0</pose>
+      <geometry>
+        <box><size>0.12 6.84 2.5</size></box>
+      </geometry>
+    </collision>
+
+    <visual name="bath_right_visual">
+      <pose>9.975 10.095 1.25 0 0 0</pose>
+      <geometry>
+        <box><size>0.12 6.84 2.5</size></box>
+      </geometry>
+      <material>
+        <ambient>0.8 0.8 0.8 1</ambient>
+        <diffuse>0.8 0.8 0.8 1</diffuse>
+        <specular>0.4 0.4 0.4 1</specular>
+      </material>
+    </visual>
+
+
+    <!-- Bathroom lower wall LEFT of doorway -->
+    <collision name="bath_bottom_left_collision">
+      <pose>7.35 9.15 1.25 0 0 0</pose>
+      <geometry>
+        <box><size>1.65 0.12 2.5</size></box>
+      </geometry>
+    </collision>
+
+    <visual name="bath_bottom_left_visual">
+      <pose>7.35 9.15 1.25 0 0 0</pose>
+      <geometry>
+        <box><size>1.65 0.12 2.5</size></box>
+      </geometry>
+      <material>
+        <ambient>0.8 0.8 0.8 1</ambient>
+        <diffuse>0.8 0.8 0.8 1</diffuse>
+        <specular>0.4 0.4 0.4 1</specular>
+      </material>
+    </visual>
+
+
+    <!-- Bathroom lower wall RIGHT of doorway -->
+    <collision name="bath_bottom_right_collision">
+      <pose>9.75 9.15 1.25 0 0 0</pose>
+      <geometry>
+        <box><size>0.45 0.12 2.5</size></box>
+      </geometry>
+    </collision>
+
+    <visual name="bath_bottom_right_visual">
+      <pose>9.75 9.15 1.25 0 0 0</pose>
+      <geometry>
+        <box><size>0.45 0.12 2.5</size></box>
+      </geometry>
+      <material>
+        <ambient>0.8 0.8 0.8 1</ambient>
+        <diffuse>0.8 0.8 0.8 1</diffuse>
+        <specular>0.4 0.4 0.4 1</specular>
+      </material>
+    </visual>
+
+
+    <!-- ================================================= -->
+    <!-- BEDROOM                                           -->
+    <!-- ================================================= -->
+
+    <collision name="bed_bottom_left_collision">
+      <pose>10.425 6.675 1.25 0 0 0</pose>
+      <geometry>
+        <box><size>0.90 0.12 2.5</size></box>
+      </geometry>
+    </collision>
+
+    <visual name="bed_bottom_left_visual">
+      <pose>10.425 6.675 1.25 0 0 0</pose>
+      <geometry>
+        <box><size>0.90 0.12 2.5</size></box>
+      </geometry>
+      <material>
+        <ambient>0.8 0.8 0.8 1</ambient>
+        <diffuse>0.8 0.8 0.8 1</diffuse>
+        <specular>0.4 0.4 0.4 1</specular>
+      </material>
+    </visual>
+
+
+    <!-- Bedroom doorway -->
+
+    <collision name="bed_bottom_right_collision">
+      <pose>12.525 6.675 1.25 0 0 0</pose>
+      <geometry>
+        <box><size>0.60 0.12 2.5</size></box>
+      </geometry>
+    </collision>
+
+    <visual name="bed_bottom_right_visual">
+      <pose>12.525 6.675 1.25 0 0 0</pose>
+      <geometry>
+        <box><size>0.60 0.12 2.5</size></box>
+      </geometry>
+      <material>
+        <ambient>0.8 0.8 0.8 1</ambient>
+        <diffuse>0.8 0.8 0.8 1</diffuse>
+        <specular>0.4 0.4 0.4 1</specular>
+      </material>
+    </visual>
+
+
+    <!-- ================================================= -->
+    <!-- MASTER CLOSET                                     -->
+    <!-- ================================================= -->
+
+    <collision name="master_closet_left_collision">
+      <pose>12.825 5.25 1.25 0 0 0</pose>
+      <geometry>
+        <box><size>0.12 2.85 2.5</size></box>
+      </geometry>
+    </collision>
+
+    <visual name="master_closet_left_visual">
+      <pose>12.825 5.25 1.25 0 0 0</pose>
+      <geometry>
+        <box><size>0.12 2.85 2.5</size></box>
+      </geometry>
+      <material>
+        <ambient>0.8 0.8 0.8 1</ambient>
+        <diffuse>0.8 0.8 0.8 1</diffuse>
+        <specular>0.4 0.4 0.4 1</specular>
+      </material>
+    </visual>
+
+
+    <collision name="closet_top_left_collision">
+      <pose>13.17 6.675 1.25 0 0 0</pose>
+      <geometry>
+        <box><size>0.69 0.12 2.5</size></box>
+      </geometry>
+    </collision>
+
+    <visual name="closet_top_left_visual">
+      <pose>13.17 6.675 1.25 0 0 0</pose>
+      <geometry>
+        <box><size>0.69 0.12 2.5</size></box>
+      </geometry>
+      <material>
+        <ambient>0.8 0.8 0.8 1</ambient>
+        <diffuse>0.8 0.8 0.8 1</diffuse>
+        <specular>0.4 0.4 0.4 1</specular>
+      </material>
+    </visual>
+
+
+    <!-- Closet door opening -->
+
+    <collision name="closet_top_right_collision">
+      <pose>15.45 6.675 1.25 0 0 0</pose>
+      <geometry>
+        <box><size>0.75 0.12 2.5</size></box>
+      </geometry>
+    </collision>
+
+    <visual name="closet_top_right_visual">
+      <pose>15.45 6.675 1.25 0 0 0</pose>
+      <geometry>
+        <box><size>0.75 0.12 2.5</size></box>
+      </geometry>
+      <material>
+        <ambient>0.8 0.8 0.8 1</ambient>
+        <diffuse>0.8 0.8 0.8 1</diffuse>
+        <specular>0.4 0.4 0.4 1</specular>
+      </material>
+    </visual>
+
+
+    <collision name="master_closet_bottom_collision">
+      <pose>14.37 3.825 1.25 0 0 0</pose>
+      <geometry>
+        <box><size>3.09 0.12 2.5</size></box>
+      </geometry>
+    </collision>
+
+    <visual name="master_closet_bottom_visual">
+      <pose>14.37 3.825 1.25 0 0 0</pose>
+      <geometry>
+        <box><size>3.09 0.12 2.5</size></box>
+      </geometry>
+      <material>
+        <ambient>0.8 0.8 0.8 1</ambient>
+        <diffuse>0.8 0.8 0.8 1</diffuse>
+        <specular>0.4 0.4 0.4 1</specular>
+      </material>
+    </visual>
+
+
+    <!-- ================================================= -->
+    <!-- HOME OFFICE                                       -->
+    <!-- ================================================= -->
+
+<!-- Office LEFT wall - lower section below closet doorway -->
+<collision name="office_left_lower_collision">
+  <pose>9.975 0.405 1.25 0 0 0</pose>
+  <geometry>
+    <box><size>0.12 0.69 2.5</size></box>
+  </geometry>
+</collision>
+
+<visual name="office_left_lower_visual">
+  <pose>9.975 0.405 1.25 0 0 0</pose>
+  <geometry>
+    <box><size>0.12 0.69 2.5</size></box>
+  </geometry>
+  <material>
+    <ambient>0.8 0.8 0.8 1</ambient>
+    <diffuse>0.8 0.8 0.8 1</diffuse>
+  </material>
+</visual>
+
+
+<!-- Office LEFT wall - upper section above closet doorway -->
+<collision name="office_left_upper_collision">
+  <pose>9.975 3.1875 1.25 0 0 0</pose>
+  <geometry>
+    <box><size>0.12 2.175 2.5</size></box>
+  </geometry>
+</collision>
+
+<visual name="office_left_upper_visual">
+  <pose>9.975 3.1875 1.25 0 0 0</pose>
+  <geometry>
+    <box><size>0.12 2.175 2.5</size></box>
+  </geometry>
+  <material>
+    <ambient>0.8 0.8 0.8 1</ambient>
+    <diffuse>0.8 0.8 0.8 1</diffuse>
+  </material>
+</visual>
+
+
+<!-- Header above office closet doorway -->
+<collision name="office_closet_header_collision">
+  <pose>9.975 1.425 2.30 0 0 0</pose>
+  <geometry>
+    <box><size>0.12 1.35 0.40</size></box>
+  </geometry>
+</collision>
+
+<visual name="office_closet_header_visual">
+  <pose>9.975 1.425 2.30 0 0 0</pose>
+  <geometry>
+    <box><size>0.12 1.35 0.40</size></box>
+  </geometry>
+  <material>
+    <ambient>0.8 0.8 0.8 1</ambient>
+    <diffuse>0.8 0.8 0.8 1</diffuse>
+  </material>
+</visual>
+
+<!-- Office top wall LEFT of doorway -->
+<collision name="office_top_left_collision">
+  <pose>10.35 4.275 1.25 0 0 0</pose>
+  <geometry>
+    <box><size>0.75 0.12 2.5</size></box>
+  </geometry>
+</collision>
+
+<visual name="office_top_left_visual">
+  <pose>10.35 4.275 1.25 0 0 0</pose>
+  <geometry>
+    <box><size>0.75 0.12 2.5</size></box>
+  </geometry>
+  <material>
+    <ambient>0.8 0.8 0.8 1</ambient>
+    <diffuse>0.8 0.8 0.8 1</diffuse>
+    <specular>0.4 0.4 0.4 1</specular>
+  </material>
+</visual>
+
+    <!-- Office doorway -->
+
+    <collision name="office_top_right_collision">
+      <pose>12.45 4.275 1.25 0 0 0</pose>
+      <geometry>
+        <box><size>0.75 0.12 2.5</size></box>
+      </geometry>
+    </collision>
+
+    <visual name="office_top_right_visual">
+      <pose>12.45 4.275 1.25 0 0 0</pose>
+      <geometry>
+        <box><size>0.75 0.12 2.5</size></box>
+      </geometry>
+      <material>
+        <ambient>0.8 0.8 0.8 1</ambient>
+        <diffuse>0.8 0.8 0.8 1</diffuse>
+        <specular>0.4 0.4 0.4 1</specular>
+      </material>
+    </visual>
+
+
+    <!-- ================================================= -->
+    <!-- UTILITY                                           -->
+    <!-- ================================================= -->
+
+    <!-- Utility TOP wall with doorway facing bathroom / hall -->
+
+    <!-- Left side of utility doorway -->
+    <collision name="utility_top_left_collision">
+      <pose>8.3325 4.275 1.25 0 0 0</pose>
+      <geometry>
+        <box><size>0.495 0.12 2.5</size></box>
+      </geometry>
+    </collision>
+
+    <visual name="utility_top_left_visual">
+      <pose>8.3325 4.275 1.25 0 0 0</pose>
+      <geometry>
+        <box><size>0.495 0.12 2.5</size></box>
+      </geometry>
+      <material>
+        <ambient>0.8 0.8 0.8 1</ambient>
+        <diffuse>0.8 0.8 0.8 1</diffuse>
+        <specular>0.4 0.4 0.4 1</specular>
+      </material>
+    </visual>
+
+    <!-- Right side of utility doorway -->
+    <collision name="utility_top_right_collision">
+      <pose>9.7275 4.275 1.25 0 0 0</pose>
+      <geometry>
+        <box><size>0.495 0.12 2.5</size></box>
+      </geometry>
+    </collision>
+
+    <visual name="utility_top_right_visual">
+      <pose>9.7275 4.275 1.25 0 0 0</pose>
+      <geometry>
+        <box><size>0.495 0.12 2.5</size></box>
+      </geometry>
+      <material>
+        <ambient>0.8 0.8 0.8 1</ambient>
+        <diffuse>0.8 0.8 0.8 1</diffuse>
+        <specular>0.4 0.4 0.4 1</specular>
+      </material>
+    </visual>
+
+    <!-- Header above utility doorway -->
+    <collision name="utility_top_header_collision">
+      <pose>9.03 4.275 2.30 0 0 0</pose>
+      <geometry>
+        <box><size>0.90 0.12 0.40</size></box>
+      </geometry>
+    </collision>
+
+    <visual name="utility_top_header_visual">
+      <pose>9.03 4.275 2.30 0 0 0</pose>
+      <geometry>
+        <box><size>0.90 0.12 0.40</size></box>
+      </geometry>
+      <material>
+        <ambient>0.8 0.8 0.8 1</ambient>
+        <diffuse>0.8 0.8 0.8 1</diffuse>
+      </material>
+    </visual>
+
+
+    <!-- Utility LEFT wall - solid -->
+    <collision name="utility_left_collision">
+      <pose>8.085 3.57 1.25 0 0 0</pose>
+      <geometry>
+        <box><size>0.12 1.41 2.5</size></box>
+      </geometry>
+    </collision>
+
+    <visual name="utility_left_visual">
+      <pose>8.085 3.57 1.25 0 0 0</pose>
+      <geometry>
+        <box><size>0.12 1.41 2.5</size></box>
+      </geometry>
+      <material>
+        <ambient>0.8 0.8 0.8 1</ambient>
+        <diffuse>0.8 0.8 0.8 1</diffuse>
+        <specular>0.4 0.4 0.4 1</specular>
+      </material>
+    </visual>
+
+
+    <collision name="utility_bottom_collision">
+      <pose>9.03 2.865 1.25 0 0 0</pose>
+      <geometry>
+        <box><size>1.89 0.12 2.5</size></box>
+      </geometry>
+    </collision>
+
+    <visual name="utility_bottom_visual">
+      <pose>9.03 2.865 1.25 0 0 0</pose>
+      <geometry>
+        <box><size>1.89 0.12 2.5</size></box>
+      </geometry>
+      <material>
+        <ambient>0.8 0.8 0.8 1</ambient>
+        <diffuse>0.8 0.8 0.8 1</diffuse>
+        <specular>0.4 0.4 0.4 1</specular>
+      </material>
+    </visual>
+
+
+<!-- ================================================= -->
+<!-- WALL HEADERS ABOVE DOORWAYS                       -->
+<!-- ================================================= -->
+
+<!-- Front door header -->
+<collision name="front_door_header_collision">
+  <pose>6.4125 0.06 2.30 0 0 0</pose>
+  <geometry>
+    <box><size>1.425 0.12 0.40</size></box>
+  </geometry>
+</collision>
+
+<visual name="front_door_header_visual">
+  <pose>6.4125 0.06 2.30 0 0 0</pose>
+  <geometry>
+    <box><size>1.425 0.12 0.40</size></box>
+  </geometry>
+  <material>
+    <ambient>0.8 0.8 0.8 1</ambient>
+    <diffuse>0.8 0.8 0.8 1</diffuse>
+  </material>
+</visual>
+
+
+<!-- Bathroom door header -->
+<collision name="bathroom_door_header_collision">
+  <pose>8.85 9.15 2.30 0 0 0</pose>
+  <geometry>
+    <box><size>1.35 0.12 0.40</size></box>
+  </geometry>
+</collision>
+
+<visual name="bathroom_door_header_visual">
+  <pose>8.85 9.15 2.30 0 0 0</pose>
+  <geometry>
+    <box><size>1.35 0.12 0.40</size></box>
+  </geometry>
+  <material>
+    <ambient>0.8 0.8 0.8 1</ambient>
+    <diffuse>0.8 0.8 0.8 1</diffuse>
+  </material>
+</visual>
+
+
+<!-- Bedroom door header -->
+<collision name="bedroom_door_header_collision">
+  <pose>11.55 6.675 2.30 0 0 0</pose>
+  <geometry>
+    <box><size>1.35 0.12 0.40</size></box>
+  </geometry>
+</collision>
+
+<visual name="bedroom_door_header_visual">
+  <pose>11.55 6.675 2.30 0 0 0</pose>
+  <geometry>
+    <box><size>1.35 0.12 0.40</size></box>
+  </geometry>
+  <material>
+    <ambient>0.8 0.8 0.8 1</ambient>
+    <diffuse>0.8 0.8 0.8 1</diffuse>
+  </material>
+</visual>
+
+
+<!-- Office door header -->
+<collision name="office_door_header_collision">
+  <pose>11.40 4.275 2.30 0 0 0</pose>
+  <geometry>
+    <box><size>1.35 0.12 0.40</size></box>
+  </geometry>
+</collision>
+
+<visual name="office_door_header_visual">
+  <pose>11.40 4.275 2.30 0 0 0</pose>
+  <geometry>
+    <box><size>1.35 0.12 0.40</size></box>
+  </geometry>
+  <material>
+    <ambient>0.8 0.8 0.8 1</ambient>
+    <diffuse>0.8 0.8 0.8 1</diffuse>
+  </material>
+</visual>
+
+
+<!-- Master closet door header -->
+<collision name="master_closet_door_header_collision">
+  <pose>14.295 6.675 2.30 0 0 0</pose>
+  <geometry>
+    <box><size>1.56 0.12 0.40</size></box>
+  </geometry>
+</collision>
+
+<visual name="master_closet_door_header_visual">
+  <pose>14.295 6.675 2.30 0 0 0</pose>
+  <geometry>
+    <box><size>1.56 0.12 0.40</size></box>
+  </geometry>
+  <material>
+    <ambient>0.8 0.8 0.8 1</ambient>
+    <diffuse>0.8 0.8 0.8 1</diffuse>
+  </material>
+</visual>
+
+  </link>
+</model>
+
+<!-- ================================================= -->
+<!-- FRONT ENTRY / OFFICE CLOSETS                       -->
+<!-- Entry closet opens LEFT, office closet opens RIGHT -->
+<!-- ================================================= -->
+<model name="front_entry_closets">
+  <static>true</static>
+  <pose>-7.9575 -6.8025 0 0 0 0</pose>
+
+  <link name="closets">
+
+    <!-- Shared divider between the two closets -->
+    <collision name="closet_divider_collision">
+      <pose>9.03 1.4625 1.25 0 0 0</pose>
+      <geometry>
+        <box><size>0.12 2.805 2.5</size></box>
+      </geometry>
+    </collision>
+
+    <visual name="closet_divider_visual">
+      <pose>9.03 1.4625 1.25 0 0 0</pose>
+      <geometry>
+        <box><size>0.12 2.805 2.5</size></box>
+      </geometry>
+      <material>
+        <ambient>0.8 0.8 0.8 1</ambient>
+        <diffuse>0.8 0.8 0.8 1</diffuse>
+      </material>
+    </visual>
+
+
+    <!-- ============================================= -->
+    <!-- ENTRY CLOSET - LEFT-FACING DOORWAY            -->
+    <!-- ============================================= -->
+
+    <!-- Wall below doorway -->
+    <collision name="entry_closet_lower_wall_collision">
+      <pose>8.085 0.405 1.25 0 0 0</pose>
+      <geometry>
+        <box><size>0.12 0.69 2.5</size></box>
+      </geometry>
+    </collision>
+
+    <visual name="entry_closet_lower_wall_visual">
+      <pose>8.085 0.405 1.25 0 0 0</pose>
+      <geometry>
+        <box><size>0.12 0.69 2.5</size></box>
+      </geometry>
+      <material>
+        <ambient>0.8 0.8 0.8 1</ambient>
+        <diffuse>0.8 0.8 0.8 1</diffuse>
+      </material>
+    </visual>
+
+    <!-- Wall above doorway -->
+    <collision name="entry_closet_upper_wall_collision">
+      <pose>8.085 2.4825 1.25 0 0 0</pose>
+      <geometry>
+        <box><size>0.12 0.765 2.5</size></box>
+      </geometry>
+    </collision>
+
+    <visual name="entry_closet_upper_wall_visual">
+      <pose>8.085 2.4825 1.25 0 0 0</pose>
+      <geometry>
+        <box><size>0.12 0.765 2.5</size></box>
+      </geometry>
+      <material>
+        <ambient>0.8 0.8 0.8 1</ambient>
+        <diffuse>0.8 0.8 0.8 1</diffuse>
+      </material>
+    </visual>
+
+    <!-- Header above entry closet door -->
+    <collision name="entry_closet_header_collision">
+      <pose>8.085 1.425 2.30 0 0 0</pose>
+      <geometry>
+        <box><size>0.12 1.35 0.40</size></box>
+      </geometry>
+    </collision>
+
+    <visual name="entry_closet_header_visual">
+      <pose>8.085 1.425 2.30 0 0 0</pose>
+      <geometry>
+        <box><size>0.12 1.35 0.40</size></box>
+      </geometry>
+      <material>
+        <ambient>0.8 0.8 0.8 1</ambient>
+        <diffuse>0.8 0.8 0.8 1</diffuse>
+      </material>
+    </visual>
+
+  </link>
+</model>
+
+<model name="house_floor">
+  <static>true</static>
+  <pose>0 0 0.001 0 0 0</pose>
+
+  <link name="floor_link">
+    <visual name="floor_visual">
+      <geometry>
+        <box>
+          <size>15.915 13.605 0.05</size>
+        </box>
+      </geometry>
+
+      <material>
+        <ambient>0.55 0.45 0.35 1</ambient>
+        <diffuse>0.55 0.45 0.35 1</diffuse>
+        <specular>0.2 0.2 0.2 1</specular>
+      </material>
+    </visual>
+  </link>
+</model>
+
+<model name="front_door">
+  <static>true</static>
+
+  <pose>-0.8325 -6.03 1.05 0 0 1.5708</pose>
+
+  <link name="door_link">
+
+<collision name="door_collision">
+  <geometry>
+    <box>
+      <size>1.425 0.06 2.10</size>
+    </box>
+  </geometry>
+</collision>
+    <visual name="door_visual">
+      <geometry>
+        <box>
+          <size>1.425 0.06 2.10</size>
+        </box>
+      </geometry>
+
+      <material>
+        <ambient>0.35 0.20 0.10 1</ambient>
+        <diffuse>0.35 0.20 0.10 1</diffuse>
+        <specular>0.15 0.15 0.15 1</specular>
+      </material>
+    </visual>
+</link>
+</model>
+<!-- ===================== -->
+<!-- BATHROOM DOOR - OPEN  -->
+<!-- ===================== -->
+<model name="bathroom_door">
+  <static>true</static>
+  <pose>1.5675 3.0225 1.05 0 0 1.5708</pose>
+
+  <link name="door_link">
+ <collision name="door_collision">
+      <geometry>
+        <box>
+          <size>1.35 0.06 2.10</size>
+        </box>
+      </geometry>
+    </collision>
+    <visual name="door_visual">
+      <geometry>
+        <box>
+          <size>1.35 0.06 2.10</size>
+        </box>
+      </geometry>
+
+      <material>
+        <ambient>0.35 0.20 0.10 1</ambient>
+        <diffuse>0.35 0.20 0.10 1</diffuse>
+        <specular>0.15 0.15 0.15 1</specular>
+      </material>
+    </visual>
+  </link>
+</model>
+
+
+<!-- ==================== -->
+<!-- BEDROOM DOOR - OPEN  -->
+<!-- ==================== -->
+<model name="bedroom_door">
+  <static>true</static>
+  <pose>2.9175 0.5475 1.05 0 0 1.5708</pose>
+
+  <link name="door_link">
+ <collision name="door_collision">
+      <geometry>
+        <box>
+          <size>1.35 0.06 2.10</size>
+        </box>
+      </geometry>
+    </collision>
+    <visual name="door_visual">
+      <geometry>
+        <box>
+          <size>1.35 0.06 2.10</size>
+        </box>
+      </geometry>
+
+      <material>
+        <ambient>0.35 0.20 0.10 1</ambient>
+        <diffuse>0.35 0.20 0.10 1</diffuse>
+        <specular>0.15 0.15 0.15 1</specular>
+      </material>
+    </visual>
+  </link>
+</model>
+
+
+<!-- ================== -->
+<!-- OFFICE DOOR - OPEN -->
+<!-- ================== -->
+<model name="office_door">
+  <static>true</static>
+  <pose>2.7675 -3.2025 1.05 0 0 -1.5708</pose>
+  <link name="door_link">
+ <collision name="door_collision">
+      <geometry>
+        <box>
+          <size>1.35 0.06 2.10</size>
+        </box>
+      </geometry>
+    </collision>
+    <visual name="door_visual">
+      <geometry>
+        <box>
+          <size>1.35 0.06 2.10</size>
+        </box>
+      </geometry>
+
+      <material>
+        <ambient>0.35 0.20 0.10 1</ambient>
+        <diffuse>0.35 0.20 0.10 1</diffuse>
+        <specular>0.15 0.15 0.15 1</specular>
+      </material>
+    </visual>
+  </link>
+</model>
+
+<!-- ===================== -->
+<!-- UTILITY DOOR - OPEN   -->
+<!-- Door is on wall facing bathroom / hall -->
+<!-- ===================== -->
+<model name="utility_door">
+  <static>true</static>
+
+  <!-- Hinged at left side of top opening, swung inward -->
+  <pose>0.6225 -2.9775 1.05 0 0 -1.5708</pose>
+
+  <link name="door_link">
+ <collision name="door_collision">
+      <geometry>
+        <box>
+          <size>0.90 0.05 2.10</size>
+        </box>
+      </geometry>
+    </collision>
+    <visual name="door_visual">
+      <geometry>
+        <box><size>0.90 0.05 2.10</size></box>
+      </geometry>
+      <material>
+        <ambient>0.35 0.20 0.10 1</ambient>
+        <diffuse>0.35 0.20 0.10 1</diffuse>
+        <specular>0.15 0.15 0.15 1</specular>
+      </material>
+    </visual>
+  </link>
+</model>
+
+
+<!-- ================================================= -->
+<!-- ENTRY CLOSET - LEFT-FACING BIFOLD DOORS            -->
+<!-- ================================================= -->
+
+<model name="entry_closet_door_1">
+  <static>true</static>
+  <pose>0.3625 -5.8125 1.05 0 0 0.7854</pose>
+
+  <link name="door_link">
+ <collision name="door_collision">
+      <geometry>
+        <box>
+          <size>0.675 0.05 2.10</size>
+        </box>
+      </geometry>
+    </collision>
+    <visual name="door_visual">
+      <geometry>
+        <box><size>0.675 0.05 2.10</size></box>
+      </geometry>
+      <material>
+        <ambient>0.35 0.20 0.10 1</ambient>
+        <diffuse>0.35 0.20 0.10 1</diffuse>
+      </material>
+    </visual>
+  </link>
+</model>
+
+<model name="entry_closet_door_2">
+  <static>true</static>
+  <pose>0.3625 -4.9425 1.05 0 0 -0.7854</pose>
+
+  <link name="door_link">
+ <collision name="door_collision">
+      <geometry>
+        <box>
+          <size>0.675 0.05 2.10</size>
+        </box>
+      </geometry>
+    </collision>
+    <visual name="door_visual">
+      <geometry>
+        <box><size>0.675 0.05 2.10</size></box>
+      </geometry>
+      <material>
+        <ambient>0.35 0.20 0.10 1</ambient>
+        <diffuse>0.35 0.20 0.10 1</diffuse>
+      </material>
+    </visual>
+  </link>
+</model>
+
+
+<!-- ================================================= -->
+<!-- OFFICE CLOSET - RIGHT-FACING BIFOLD DOORS          -->
+<!-- ================================================= -->
+
+<model name="office_closet_door_1">
+  <static>true</static>
+  <pose>2.364 -6.0525 1.05 0 0 0</pose>
+
+  <link name="door_link">
+ <collision name="door_collision">
+      <geometry>
+        <box>
+          <size>0.675 0.05 2.10</size>
+        </box>
+      </geometry>
+    </collision>
+    <visual name="door_visual">
+      <geometry>
+        <box><size>0.675 0.05 2.10</size></box>
+      </geometry>
+      <material>
+        <ambient>0.35 0.20 0.10 1</ambient>
+        <diffuse>0.35 0.20 0.10 1</diffuse>
+      </material>
+    </visual>
+  </link>
+</model>
+
+<model name="office_closet_door_2">
+  <static>true</static>
+  <pose>2.355 -4.7025 1.05 0 0 0</pose>
+
+  <link name="door_link">
+ <collision name="door_collision">
+      <geometry>
+        <box>
+          <size>0.675 0.05 2.10</size>
+        </box>
+      </geometry>
+    </collision>
+    <visual name="door_visual">
+      <geometry>
+        <box><size>0.675 0.05 2.10</size></box>
+      </geometry>
+      <material>
+        <ambient>0.35 0.20 0.10 1</ambient>
+        <diffuse>0.35 0.20 0.10 1</diffuse>
+      </material>
+    </visual>
+  </link>
+</model>
+
+<!-- ================================= -->
+<!-- MASTER CLOSET - TWO OPEN PANELS   -->
+<!-- ================================= -->
+
+<model name="master_closet_door_left">
+  <static>true</static>
+
+  <!-- Left panel -->
+  <pose>5.5575 0.2625 1.05 0 0 1.5708</pose>
+
+  <link name="door_link">
+ <collision name="door_collision">
+      <geometry>
+        <box>
+          <size>0.78 0.05 2.10</size>
+        </box>
+      </geometry>
+    </collision>
+    <visual name="door_visual">
+      <geometry>
+        <box> 
+          <size>0.78 0.05 2.10</size>
+        </box>
+      </geometry>
+
+      <material>
+        <ambient>0.35 0.20 0.10 1</ambient>
+        <diffuse>0.35 0.20 0.10 1</diffuse>
+        <specular>0.15 0.15 0.15 1</specular>
+      </material>
+    </visual>
+  </link>
+</model>
+
+
+<model name="master_closet_door_right">
+  <static>true</static>
+
+  <!-- Right panel -->
+  <pose>7.1175 0.2625 1.05 0 0 -1.5708</pose>
+
+  <link name="door_link">
+ <collision name="door_collision">
+      <geometry>
+        <box>
+          <size>0.78 0.05 2.10</size>
+        </box>
+      </geometry>
+    </collision>
+    <visual name="door_visual">
+      <geometry>
+        <box>
+          <size>0.78 0.05 2.10</size>
+        </box>
+      </geometry>
+
+      <material>
+        <ambient>0.35 0.20 0.10 1</ambient>
+        <diffuse>0.35 0.20 0.10 1</diffuse>
+        <specular>0.15 0.15 0.15 1</specular>
+      </material>
+    </visual>
+  </link>
+</model>
+
+
+
+</world>
 </sdf>

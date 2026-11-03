@@ -210,7 +210,7 @@ def generate_launch_description():
                 'base_frame_id': "base_link",
                 'odom_frame_id': "odom",
                 'clock_topic': f'/clock',
-                'enable_odom_tf': True,
+                'enable_odom_tf': False,  # EKF alone publishes odom -> base_link,
             }],
             remappings=remappings
         )
@@ -251,8 +251,16 @@ def generate_launch_description():
             initial_pose_cmd,
         ])
 
-        rviz_launch_file = os.path.join(pkg_path, 'launch', 'rviz_launch.py')
-        rviz_config_file = os.path.join(pkg_path, 'rviz', 'nav2_default_view.rviz')
+        rviz_launch_file = os.path.join(
+            pkg_path,
+            'launch', 
+            'rviz_launch.py'
+        )
+        rviz_config_file = os.path.join(
+            pkg_path,
+            'rviz',
+            'slam_view.rviz'
+        )
 
         rviz = IncludeLaunchDescription(
             PythonLaunchDescriptionSource(rviz_launch_file),
@@ -322,7 +330,7 @@ def generate_launch_description():
             ros_gz_bridge,
             start_gazebo_ros_image_bridge_cmd,
             robot_control,
-            nav2_actions,
+            # nav2_actions,
             rviz,
             # test_action
         ])

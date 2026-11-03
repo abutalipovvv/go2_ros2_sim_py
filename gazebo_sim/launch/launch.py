@@ -6,12 +6,15 @@ from launch.actions import (
     IncludeLaunchDescription,
     DeclareLaunchArgument,
     ExecuteProcess,
-    RegisterEventHandler
+    RegisterEventHandler,
+    TimerAction     # this is for slam integration
 )
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration
 from launch.event_handlers import OnProcessExit
 from launch_ros.actions import SetParameter
+
+
 def generate_launch_description():
     ld = LaunchDescription()
 
@@ -39,17 +42,36 @@ def generate_launch_description():
     )
     ld.add_action(pause)
 
-
     multi_nav2_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             os.path.join(pkg_path, 'launch', 'gazebo_multi_nav2_world.launch.py')
         )
     )
 
+    # for slam
+    slam_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(
+                pkg_path,
+                'launch',
+                'go2_slam.launch.py'
+            )
+        )
+    )
+
     launch_after_pause = RegisterEventHandler(
         event_handler=OnProcessExit(
             target_action=pause,
-            on_exit=[multi_nav2_launch]
+            on_exit=[
+                # launch robot and controllers
+                multi_nav2_launch,
+
+                # start slam after allowing robot setup
+                TimerAction(
+                    period=12.0,
+                    actions=[slam_launch]
+                )
+            ]
         )
     )
 

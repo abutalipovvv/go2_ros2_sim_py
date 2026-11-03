@@ -103,7 +103,7 @@ def generate_launch_description():
     ld.add_action(start_namespaced_rviz_cmd)
 
     # Add other nodes and processes we need
-    ld.add_action(exit_event_handler)
-    ld.add_action(exit_event_handler_namespaced)
+    # ld.add_action(exit_event_handler)
+    # ld.add_action(exit_event_handler_namespaced)
 
     return ld

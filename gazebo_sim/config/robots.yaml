@@ -2,7 +2,7 @@ robots:
   - name: robot1
     x_pose: '0.0'
     y_pose: '0.0'
-    z_pose: '0.8'
+    z_pose: '0.7'
   # - name: robot2
   #   x_pose: '-2.0'
   #   y_pose: '0.0'
